@@ -19,7 +19,7 @@ public class StatsService {
         int maxMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > sales[maxMonth]) {
+            if (sales[i] >= sales[maxMonth]) {
                 maxMonth = i;
             }
         }
@@ -35,41 +35,25 @@ public class StatsService {
     }
 
     public int averageSum(int[] sales) {
-        int average = 0;
-        for (int i : sales) {
-            average += i;
-        }
-        return average / sales.length;
+//        int average = 0;
+//        for (int i : sales) {
+//            average += i;
+//        }
+        return sumSales(sales) / sales.length;
     }
 
     public int belowAverage(int[] sales) {
-        int sum = 0;
-        int average = 0;
         int count = 0;
-
         for (int i = 0; i < sales.length; i++) {
-            sum = sum + sales[i];
-        }
-        average = sum / sales.length;
-
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] < average) count++;
+            if (sales[i] < averageSum(sales)) count++;
         }
         return count;
     }
 
     public int highAverage(int[] sales) {
-        int sum = 0;
-        int average = 0;
         int count = 0;
-
         for (int i = 0; i < sales.length; i++) {
-            sum = sum + sales[i];
-        }
-        average = sum / sales.length;
-
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > average) count++;
+            if (sales[i] > averageSum(sales)) count++;
         }
         return count;
     }
