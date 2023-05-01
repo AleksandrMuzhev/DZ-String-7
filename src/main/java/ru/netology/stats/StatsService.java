@@ -3,7 +3,7 @@ package ru.netology.stats;
 import java.util.Arrays;
 
 public class StatsService {
-    public int minSales(int[] sales) {
+    public int minSales(long[] sales) {
         int minMonth = 0; // номер месяца с минимальными продажами среди просмотренных ранее
 
         for (int i = 0; i < sales.length; i++) {
@@ -15,7 +15,7 @@ public class StatsService {
         return minMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
     }
 
-    public int maxSales(int[] sales) {
+    public int maxSales(long[] sales) {
         int maxMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -26,15 +26,15 @@ public class StatsService {
         return maxMonth + 1;
     }
 
-    public int sumSales(int[] sales) {
-        int sum = 0;
+    public long sumSales(long[] sales) {
+        long sum = 0;
         for (int i = 0; i < sales.length; i++) {
             sum = sum + sales[i];
         }
         return sum;
     }
 
-    public int averageSum(int[] sales) {
+    public long averageSum(long[] sales) {
 //        int average = 0;
 //        for (int i : sales) {
 //            average += i;
@@ -42,18 +42,24 @@ public class StatsService {
         return sumSales(sales) / sales.length;
     }
 
-    public int belowAverage(int[] sales) {
+    public int belowAverage(long[] sales) {
         int count = 0;
+        long averageSale = averageSum(sales);
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] < averageSum(sales)) count++;
+            if (sales[i] < averageSale) {
+                count++;
+            }
         }
         return count;
     }
 
-    public int highAverage(int[] sales) {
+    public int highAverage(long[] sales) {
         int count = 0;
+        long averageSale = averageSum(sales);
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > averageSum(sales)) count++;
+            if (sales[i] > averageSale) {
+                count++;
+            }
         }
         return count;
     }
